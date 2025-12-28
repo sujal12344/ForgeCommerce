@@ -6,7 +6,7 @@ const CategoryPage = async ({
 }: {
   params: { CategoriesId: string; StoreId: string };
 }) => {
-  const categories = await prisma.categories.findUnique({
+  const categories = await prisma.category.findUnique({
     where: {
       id: params.CategoriesId,
     },

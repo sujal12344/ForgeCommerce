@@ -2,7 +2,7 @@ import prisma from "@/prisma/client";
 import ColorForm from "./components/color-form";
 
 const ColorPage = async ({ params }: { params: { colorId: string } }) => {
-  const color = await prisma.colors.findUnique({
+  const color = await prisma.color.findUnique({
     where: {
       id: params.colorId,
     },

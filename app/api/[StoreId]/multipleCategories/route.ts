@@ -26,7 +26,7 @@ export async function POST(
     return new NextResponse("Store not found", { status: 404 });
   }
   const billIdsMap = getBills.map(bill => bill.id);
-  const addCategories = await prisma.categories.createMany({
+  const addCategories = await prisma.category.createMany({
     data: nameArr.map((name: string, index: number) => ({
       name,
       StoreId: params.StoreId,

@@ -40,39 +40,41 @@ export async function POST(
           price,
           Featured,
           Archived,
-          CategoriesId,
-          sizesId,
+          categoryId,
+          sizeId,
           colorId,
-          Image,
+          images,
           description,
           ytURL,
         } = product;
 
         if (
           !name ||
-          !Image ||
-          !Image.length ||
+          !images ||
+          !images.length ||
           !price ||
-          !CategoriesId ||
+          !categoryId ||
           !colorId ||
-          !sizesId
+          !sizeId
         ) {
           throw new Error("Invalid product data");
         }
 
-        return prisma.products.create({
+        return prisma.product.create({
           data: {
             name,
             price,
             Featured,
             Archived,
-            CategoriesId,
-            sizesId,
+            categoryId,
+            sizeId,
             colorId,
             StoreId: params.StoreId,
-            Image: {
+            images: {
               createMany: {
-                data: [...Image.map((image: { url: string }) => image)],
+                data: images.map((image: { url: string }) => ({
+                  url: image.url,
+                })),
               },
             },
             description: description || "",

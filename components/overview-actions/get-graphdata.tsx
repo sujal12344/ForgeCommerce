@@ -8,10 +8,18 @@ type GraphData = {
 export default async function getGraphData(StoreId: string) {
   if (!StoreId) return null;
 
+  const currentYear = new Date().getFullYear();
+  const startOfYear = new Date(currentYear, 0, 1);
+  const endOfYear = new Date(currentYear, 11, 31, 23, 59, 59, 999);
+
   const paidOrders = await prisma.order.findMany({
     where: {
       StoreId,
       isPaid: true,
+      createdAt: {
+        gte: startOfYear,
+        lte: endOfYear,
+      },
     },
     include: {
       orderItems: {
@@ -30,58 +38,25 @@ export default async function getGraphData(StoreId: string) {
     }
     monthlyRevenue[month] = (monthlyRevenue[month] || 0) + revenueFororder;
   }
-  const data: GraphData[] = [
-    {
-      name: "Jan",
-      total: 0,
-    },
-    {
-      name: "Feb",
-      total: 0,
-    },
-    {
-      name: "Mar",
-      total: 0,
-    },
-    {
-      name: "Apr",
-      total: 0,
-    },
-    {
-      name: "May",
-      total: 0,
-    },
-    {
-      name: "Jun",
-      total: 0,
-    },
-    {
-      name: "Jul",
-      total: 0,
-    },
-    {
-      name: "Aug",
-      total: 0,
-    },
-    {
-      name: "Sep",
-      total: 0,
-    },
-    {
-      name: "Oct",
-      total: 0,
-    },
-    {
-      name: "Nov",
-      total: 0,
-    },
-    {
-      name: "Dec",
-      total: 0,
-    },
+
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
-  for (const month in monthlyRevenue) {
-    data[parseInt(month)].total = monthlyRevenue[parseInt(month)];
-  }
+
+  const data: GraphData[] = monthNames.map((name, index) => ({
+    name,
+    total: monthlyRevenue[index] || 0,
+  }));
   return data;
 }

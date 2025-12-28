@@ -12,7 +12,7 @@ export async function GET(
       return new NextResponse("Category id is required", { status: 400 });
     }
 
-    const categories = await prisma.categories.findUnique({
+    const categories = await prisma.category.findUnique({
       where: {
         id: params.CategoriesId,
       },
@@ -54,7 +54,7 @@ export async function DELETE(
       return new NextResponse("Unauthorized", { status: 404 });
     }
 
-    const categories = await prisma.categories.delete({
+    const categories = await prisma.category.delete({
       where: {
         id: params.CategoriesId,
       },
@@ -105,7 +105,7 @@ export async function PATCH(
       return new NextResponse("Unauthorized", { status: 404 });
     }
 
-    const categories = await prisma.categories.update({
+    const categories = await prisma.category.update({
       where: {
         id: params.CategoriesId,
       },

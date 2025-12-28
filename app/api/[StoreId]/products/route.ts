@@ -13,10 +13,10 @@ export async function POST(
       price,
       Featured,
       Archived,
-      CategoriesId,
-      sizesId,
+      categoryId,
+      sizeId,
       colorId,
-      Image,
+      images,
       description,
       ytURL,
     } = await req.json();
@@ -29,7 +29,7 @@ export async function POST(
       return new NextResponse("Name is required", { status: 400 });
     }
 
-    if (!Image || !Image.length) {
+    if (!images || !images.length) {
       return new NextResponse("Images are required", { status: 400 });
     }
 
@@ -37,7 +37,7 @@ export async function POST(
       return new NextResponse("Price is required", { status: 400 });
     }
 
-    if (!CategoriesId) {
+    if (!categoryId) {
       return new NextResponse("Category id is required", { status: 400 });
     }
 
@@ -45,7 +45,7 @@ export async function POST(
       return new NextResponse("Color id is required", { status: 400 });
     }
 
-    if (!sizesId) {
+    if (!sizeId) {
       return new NextResponse("Size id is required", { status: 400 });
     }
 
@@ -64,19 +64,19 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 404 });
     }
 
-    const product = await prisma.products.create({
+    const product = await prisma.product.create({
       data: {
         name,
         price,
         Featured,
         Archived,
-        CategoriesId,
-        sizesId,
+        categoryId,
+        sizeId,
         colorId,
         StoreId: params.StoreId,
-        Image: {
+        images: {
           createMany: {
-            data: [...Image.map((image: { url: string }) => image)],
+            data: [...images.map((image: { url: string }) => image)],
           },
         },
         description: description ? description : "",
@@ -97,24 +97,24 @@ export async function GET(
 ) {
   try {
     const { searchParams } = new URL(req.url);
-    const CategoriesId = searchParams.get("CategoriesId") || undefined;
+    const categoryId = searchParams.get("categoryId") || undefined;
     const colorId = searchParams.get("colorId") || undefined;
-    const sizesId = searchParams.get("sizesId") || undefined;
+    const sizeId = searchParams.get("sizeId") || undefined;
     const Featured = searchParams.get("Featured");
     if (!params.StoreId)
       return new NextResponse("Store id is required", { status: 400 });
-    const products = await prisma.products.findMany({
+    const products = await prisma.product.findMany({
       where: {
         StoreId: params.StoreId,
-        CategoriesId,
+        categoryId,
         colorId,
-        sizesId,
+        sizeId,
         Featured: Featured ? true : undefined,
         Archived: false,
       },
       include: {
-        Image: true,
-        categories: true,
+        images: true,
+        category: true,
         color: true,
         size: true,
       },

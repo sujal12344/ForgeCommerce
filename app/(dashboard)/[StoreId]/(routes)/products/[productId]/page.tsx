@@ -6,26 +6,26 @@ const ProductIdPage = async ({
 }: {
   params: { productId: string; StoreId: string };
 }) => {
-  const product = await prisma.products.findUnique({
+  const product = await prisma.product.findUnique({
     where: {
       id: params.productId,
     },
     include: {
-      Image: true,
+      images: true,
     },
   });
 
-  const sizes = await prisma.sizes.findMany({
+  const sizes = await prisma.size.findMany({
     where: {
       StoreId: params.StoreId,
     },
   });
-  const categories = await prisma.categories.findMany({
+  const categories = await prisma.category.findMany({
     where: {
       StoreId: params.StoreId,
     },
   });
-  const colors = await prisma.colors.findMany({
+  const colors = await prisma.color.findMany({
     where: {
       StoreId: params.StoreId,
     },

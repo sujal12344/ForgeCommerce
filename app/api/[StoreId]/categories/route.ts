@@ -39,7 +39,7 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 404 });
     }
 
-    const categories = await prisma.categories.create({
+    const categories = await prisma.category.create({
       data: {
         name,
         billboardId,
@@ -63,7 +63,7 @@ export async function GET(
       return new NextResponse("Store id is required", { status: 400 });
     }
 
-    const categories = await prisma.categories.findMany({
+    const categories = await prisma.category.findMany({
       where: {
         StoreId: params.StoreId,
       },

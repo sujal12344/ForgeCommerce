@@ -18,7 +18,7 @@ export async function DELETE(
     },
   });
   if (!Isvalid) return NextResponse.json("Unauthorized", { status: 403 });
-  const DeleteBill = await prisma.colors.deleteMany({
+  const DeleteBill = await prisma.color.deleteMany({
     where: {
       id: {
         in: idsArr,

@@ -3,7 +3,7 @@ import prisma from "@/prisma/client";
 export async function categoriesExist(StoreId: string) {
   if (!StoreId) return null;
 
-  const count = await prisma.categories.count({
+  const count = await prisma.category.count({
     where: {
       StoreId,
     },

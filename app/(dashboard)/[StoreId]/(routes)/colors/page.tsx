@@ -4,7 +4,7 @@ import prisma from "@/prisma/client";
 import Colors from "./components/Colors";
 
 const ColorsPage = async ({ params }: { params: { StoreId: string } }) => {
-  const FindColors = await prisma.colors.findMany({
+  const FindColors = await prisma.color.findMany({
     where: {
       StoreId: params.StoreId,
     },

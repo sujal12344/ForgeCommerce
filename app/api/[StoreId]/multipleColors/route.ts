@@ -19,7 +19,7 @@ export async function POST(
     return new NextResponse("Unauthenticated", { status: 403 });
   }
 
-  const addColors = await prisma.colors.createMany({
+  const addColors = await prisma.color.createMany({
     data: Object.entries(dataObj).map(([key, value]) => ({
       name: key,
       value: String(value), // Ensure the value is a string

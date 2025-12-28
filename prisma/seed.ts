@@ -153,22 +153,22 @@ async function seedIntoDB() {
     extraLargeSize,
   ] = await Promise.all([
     prisma.size.create({
-      data: { name: "sizeless", value: "sizeless", StoreId, },
+      data: { name: "sizeless", value: "sizeless", StoreId },
     }),
     prisma.size.create({
-      data: { name: "XS", value: "28", StoreId, },
+      data: { name: "XS", value: "28", StoreId },
     }),
     prisma.size.create({
-      data: { name: "S", value: "30", StoreId, },
+      data: { name: "S", value: "30", StoreId },
     }),
     prisma.size.create({
-      data: { name: "M", value: "34", StoreId, },
+      data: { name: "M", value: "34", StoreId },
     }),
     prisma.size.create({
-      data: { name: "L", value: "38", StoreId, },
+      data: { name: "L", value: "38", StoreId },
     }),
     prisma.size.create({
-      data: { name: "XL", value: "42", StoreId, },
+      data: { name: "XL", value: "42", StoreId },
     }),
   ]);
 
@@ -186,25 +186,25 @@ async function seedIntoDB() {
     blackColor,
   ] = await Promise.all([
     prisma.color.create({
-      data: { name: "Gold", value: "gold", StoreId, },
+      data: { name: "Gold", value: "gold", StoreId },
     }),
     prisma.color.create({
-      data: { name: "Gray", value: "gray", StoreId, },
+      data: { name: "Gray", value: "gray", StoreId },
     }),
     prisma.color.create({
-      data: { name: "Green", value: "green", StoreId, },
+      data: { name: "Green", value: "green", StoreId },
     }),
     prisma.color.create({
-      data: { name: "Pink", value: "pink", StoreId, },
+      data: { name: "Pink", value: "pink", StoreId },
     }),
     prisma.color.create({
-      data: { name: "Yellow", value: "yellow", StoreId, },
+      data: { name: "Yellow", value: "yellow", StoreId },
     }),
     prisma.color.create({
-      data: { name: "Blue", value: "blue", StoreId, },
+      data: { name: "Blue", value: "blue", StoreId },
     }),
     prisma.color.create({
-      data: { name: "Black", value: "black", StoreId, },
+      data: { name: "Black", value: "black", StoreId },
     }),
   ]);
 
@@ -553,7 +553,7 @@ async function seedIntoDB() {
             { productId: runningShoesProduct.id },
           ],
         },
-        createdAt: new Date("2024-09-15T10:00:00Z"),
+        createdAt: new Date("2025-09-15T10:00:00Z"),
       },
     }),
     prisma.order.create({
@@ -567,7 +567,7 @@ async function seedIntoDB() {
         orderItems: {
           create: [{ productId: leatherWalletProduct.id }],
         },
-        createdAt: new Date("2024-03-20T10:00:00Z"),
+        createdAt: new Date("2025-03-20T10:00:00Z"),
       },
     }),
     // New Orders
@@ -596,7 +596,7 @@ async function seedIntoDB() {
         orderItems: {
           create: [{ productId: shirt12Product.id }],
         },
-        createdAt: new Date("2024-08-18T10:00:00Z"),
+        createdAt: new Date("2025-08-18T10:00:00Z"),
       },
     }),
     prisma.order.create({
@@ -610,7 +610,7 @@ async function seedIntoDB() {
         orderItems: {
           create: [{ productId: shirt12Product.id }],
         },
-        createdAt: new Date("2024-02-25T10:00:00Z"),
+        createdAt: new Date("2025-02-25T10:00:00Z"),
       },
     }),
     prisma.order.create({
@@ -624,7 +624,7 @@ async function seedIntoDB() {
         orderItems: {
           create: [{ productId: shirt3Product.id }],
         },
-        createdAt: new Date("2024-11-10T10:00:00Z"),
+        createdAt: new Date("2025-11-10T10:00:00Z"),
       },
     }),
     prisma.order.create({
@@ -641,7 +641,7 @@ async function seedIntoDB() {
             { productId: shirt2Product.id },
           ],
         },
-        createdAt: new Date("2024-07-15T10:00:00Z"),
+        createdAt: new Date("2025-07-15T10:00:00Z"),
       },
     }),
     prisma.order.create({
@@ -682,7 +682,7 @@ async function seedIntoDB() {
         orderItems: {
           create: [{ productId: suit4Product.id }],
         },
-        createdAt: new Date("2024-06-11T10:00:00Z"),
+        createdAt: new Date("2025-06-11T10:00:00Z"),
       },
     }),
     prisma.order.create({

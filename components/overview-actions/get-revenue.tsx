@@ -15,7 +15,7 @@ export default async function getRevenue(StoreId: string) {
   const productIds = orders.flatMap(item =>
     item.orderItems.map(o => o.productId)
   );
-  const findProduct = await prisma.products.findMany({
+  const findProduct = await prisma.product.findMany({
     where: {
       id: {
         in: [...productIds],

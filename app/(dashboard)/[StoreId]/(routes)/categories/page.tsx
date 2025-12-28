@@ -4,7 +4,7 @@ import prisma from "@/prisma/client";
 import Categories from "./components/Categories";
 
 const CategoriesPage = async ({ params }: { params: { StoreId: string } }) => {
-  const FindCategories = await prisma.categories.findMany({
+  const FindCategories = await prisma.category.findMany({
     where: {
       StoreId: params.StoreId,
     },

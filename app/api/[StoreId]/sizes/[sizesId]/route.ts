@@ -12,7 +12,7 @@ export async function GET(
       return new NextResponse("Size id is required", { status: 400 });
     }
 
-    const sizes = await prisma.sizes.findUnique({
+    const sizes = await prisma.size.findUnique({
       where: {
         id: params.sizesId,
       },
@@ -48,10 +48,10 @@ export async function DELETE(
     });
 
     if (!storeByUserId) {
-      return new NextResponse("Unauthorized", { status: 405 });
+      return new NextResponse("Unauthorized", { status: 403 });
     }
 
-    const sizes = await prisma.sizes.delete({
+    const sizes = await prisma.size.delete({
       where: {
         id: params.sizesId,
       },
@@ -100,7 +100,7 @@ export async function PATCH(
       return new NextResponse("Unauthorized", { status: 405 });
     }
 
-    const sizes = await prisma.sizes.update({
+    const sizes = await prisma.size.update({
       where: {
         id: params.sizesId,
       },

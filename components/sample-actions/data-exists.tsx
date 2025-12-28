@@ -9,17 +9,17 @@ export async function dataExists(StoreId: string) {
     },
   });
 
-  const categories = await prisma.categories.count({
+  const categories = await prisma.category.count({
     where: {
       StoreId,
     },
   });
-  const colors = await prisma.colors.count({
+  const colors = await prisma.color.count({
     where: {
       StoreId,
     },
   });
-  const sizes = await prisma.sizes.count({
+  const sizes = await prisma.size.count({
     where: {
       StoreId,
     },

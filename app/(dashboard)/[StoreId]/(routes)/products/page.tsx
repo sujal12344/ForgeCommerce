@@ -4,12 +4,12 @@ import { formatter } from "@/lib/utils";
 import Products from "./components/products";
 
 const BillboardPage = async ({ params }: { params: { StoreId: string } }) => {
-  const FindProduct = await prisma.products.findMany({
+  const FindProduct = await prisma.product.findMany({
     where: {
       StoreId: params.StoreId,
     },
     include: {
-      categories: true,
+      category: true,
       color: true,
       size: true,
     },
@@ -23,7 +23,7 @@ const BillboardPage = async ({ params }: { params: { StoreId: string } }) => {
     price: formatter.format(product.price.toNumber()),
     archived: product.Archived,
     featured: product.Featured,
-    categoryname: product.categories.name,
+    categoryname: product.category.name,
     size: product.size.name,
     color: product.color.value,
     description: product.description?.slice(0, 20) + "..." || "",

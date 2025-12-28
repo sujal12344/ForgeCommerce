@@ -36,10 +36,10 @@ export async function POST(
     });
 
     if (!storeByUserId) {
-      return new NextResponse("Unauthorized", { status: 405 });
+      return new NextResponse("Unauthorized", { status: 403 });
     }
 
-    const colors = await prisma.colors.create({
+    const colors = await prisma.color.create({
       data: {
         name,
         value,
@@ -63,7 +63,7 @@ export async function GET(
       return new NextResponse("Store id is required", { status: 400 });
     }
 
-    const color = await prisma.colors.findMany({
+    const color = await prisma.color.findMany({
       where: {
         StoreId: params.StoreId,
       },

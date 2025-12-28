@@ -22,7 +22,7 @@ export async function POST(
     return NextResponse.json("Product id's needed", { status: 400 });
   }
 
-  const Findproduct = await prisma.products.findMany({
+  const Findproduct = await prisma.product.findMany({
     where: {
       id: {
         in: productIds,

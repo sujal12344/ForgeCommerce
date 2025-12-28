@@ -19,7 +19,7 @@ export async function POST(
     return new NextResponse("Unauthenticated", { status: 403 });
   }
 
-  const addSizes = await prisma.sizes.createMany({
+  const addSizes = await prisma.size.createMany({
     data: Object.entries(dataObj).map(([key, value]) => ({
       name: key,
       value: String(value), // Ensure the value is a string

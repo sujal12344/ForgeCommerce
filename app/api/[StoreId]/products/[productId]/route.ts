@@ -12,13 +12,13 @@ export async function GET(
       return new NextResponse("Product id is required", { status: 400 });
     }
 
-    const products = await prisma.products.findUnique({
+    const products = await prisma.product.findUnique({
       where: {
         id: params.productId,
       },
       include: {
-        Image: true,
-        categories: true,
+        images: true,
+        category: true,
         size: true,
         color: true,
       },
@@ -57,7 +57,7 @@ export async function DELETE(
       return new NextResponse("Unauthorized", { status: 405 });
     }
 
-    const products = await prisma.products.delete({
+    const products = await prisma.product.delete({
       where: {
         id: params.productId,
       },
@@ -82,10 +82,10 @@ export async function PUT(
     const {
       name,
       price,
-      CategoriesId,
-      Image,
+      categoryId,
+      images,
       colorId,
-      sizesId,
+      sizeId,
       Featured,
       Archived,
       description,
@@ -104,7 +104,7 @@ export async function PUT(
       return new NextResponse("Name is required", { status: 400 });
     }
 
-    if (!Image || !Image.length) {
+    if (!images || !images.length) {
       return new NextResponse("Images are required", { status: 400 });
     }
 
@@ -112,7 +112,7 @@ export async function PUT(
       return new NextResponse("Price is required", { status: 400 });
     }
 
-    if (!CategoriesId) {
+    if (!categoryId) {
       return new NextResponse("Category id is required", { status: 400 });
     }
 
@@ -120,7 +120,7 @@ export async function PUT(
       return new NextResponse("Color id is required", { status: 400 });
     }
 
-    if (!sizesId) {
+    if (!sizeId) {
       return new NextResponse("Size id is required", { status: 400 });
     }
 
@@ -135,17 +135,17 @@ export async function PUT(
       return new NextResponse("Unauthorized", { status: 405 });
     }
 
-    await prisma.products.update({
+    await prisma.product.update({
       where: {
         id: params.productId,
       },
       data: {
         name,
         price,
-        CategoriesId,
+        categoryId,
         colorId,
-        sizesId,
-        Image: {
+        sizeId,
+        images: {
           deleteMany: {},
         },
         Featured,
@@ -155,14 +155,14 @@ export async function PUT(
       },
     });
 
-    const products = await prisma.products.update({
+    const products = await prisma.product.update({
       where: {
         id: params.productId,
       },
       data: {
-        Image: {
+        images: {
           createMany: {
-            data: [...Image.map((image: { url: string }) => image)],
+            data: [...images.map((image: { url: string }) => image)],
           },
         },
       },
@@ -188,7 +188,7 @@ export async function PATCH(
     return new NextResponse("Product id is required", { status: 400 });
   }
   if (featured && !archived) {
-    const products = await prisma.products.update({
+    const products = await prisma.product.update({
       where: {
         id: params.productId,
       },
@@ -199,7 +199,7 @@ export async function PATCH(
     return NextResponse.json(products);
   }
   if (archived && !featured) {
-    const products = await prisma.products.update({
+    const products = await prisma.product.update({
       where: {
         id: params.productId,
       },
@@ -211,7 +211,7 @@ export async function PATCH(
     return NextResponse.json(products);
   }
   if (!featured && !archived) {
-    const products = await prisma.products.update({
+    const products = await prisma.product.update({
       where: {
         id: params.productId,
       },
@@ -222,7 +222,7 @@ export async function PATCH(
     return NextResponse.json(products);
   }
   if (featured && archived) {
-    const products = await prisma.products.update({
+    const products = await prisma.product.update({
       where: {
         id: params.productId,
       },
