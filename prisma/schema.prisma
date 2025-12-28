@@ -23,6 +23,8 @@ model Store {
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
   order      Order[]     @relation("StoreToOrder")
+
+  @@index([userId])
 }
 
 model BillBoard {
@@ -34,6 +36,8 @@ model BillBoard {
   categories Category[] @relation("BillboardtoCategories")
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
+
+  @@index([StoreId])
 }
 
 model Category {
@@ -46,6 +50,9 @@ model Category {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   products    Product[] @relation("ProducttoCategory")
+
+  @@index([StoreId])
+  @@index([billboardId])
 }
 
 model Size {
@@ -57,6 +64,8 @@ model Size {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   products  Product[] @relation("ProducttoSizes")
+
+  @@index([StoreId])
 }
 
 model Color {
@@ -68,6 +77,8 @@ model Color {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   products  Product[] @relation("ProducttoColor")
+
+  @@index([StoreId])
 }
 
 model Product {
@@ -90,6 +101,13 @@ model Product {
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
   orderItem   OrderItem[] @relation("ProducttoOrderitem")
+
+  @@index([StoreId])
+  @@index([categoryId])
+  @@index([sizeId])
+  @@index([colorId])
+  @@index([Featured])
+  @@index([Archived])
 }
 
 model Image {
@@ -99,6 +117,8 @@ model Image {
   url       String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([productId])
 }
 
 model Order {
@@ -113,6 +133,10 @@ model Order {
   address    String      @default("")
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
+
+  @@index([StoreId])
+  @@index([isPaid])
+  @@index([createdAt])
 }
 
 model OrderItem {
@@ -121,4 +145,7 @@ model OrderItem {
   order     Order   @relation(fields: [orderId], references: [id])
   productId String // Foreign Key to Product
   product   Product @relation("ProducttoOrderitem", fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([productId])
 }
