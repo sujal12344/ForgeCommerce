@@ -31,7 +31,7 @@ async function seedIntoDB() {
     },
   });
 
-  const {name: StoreName, id: StoreId} = store;
+  const { name: StoreName, id: StoreId } = store;
   console.log("✅ Store created:", StoreName, "with ID:", StoreId);
 
   // Create Billboards (in parallel)
@@ -278,7 +278,7 @@ async function seedIntoDB() {
         price: 49.99,
         description: "Premium leather wallet with multiple card slots",
         Featured: false,
-        Archived: false,
+        Archived: true,
         StoreId,
         categoryId: accessoriesCategory.id,
         sizeId: sizelessSize.id,
@@ -318,7 +318,7 @@ async function seedIntoDB() {
         price: 129.99,
         description: "Digital sports watch with heart rate monitor",
         Featured: false,
-        Archived: false,
+        Archived: true,
         StoreId,
         categoryId: accessoriesCategory.id,
         sizeId: sizelessSize.id,
@@ -337,7 +337,7 @@ async function seedIntoDB() {
         name: "Shirt 3",
         price: 24.0,
         description: "",
-        Featured: false,
+        Featured: true,
         Archived: false,
         StoreId,
         categoryId: shirtCategory.id,
@@ -357,7 +357,7 @@ async function seedIntoDB() {
         name: "Shirt12",
         price: 20.0,
         description: "",
-        Featured: true,
+        Featured: false,
         Archived: true,
         StoreId,
         categoryId: shirtCategory.id,
@@ -378,7 +378,7 @@ async function seedIntoDB() {
         price: 20.0,
         description: "",
         Featured: false,
-        Archived: false,
+        Archived: true,
         StoreId,
         categoryId: shirtCategory.id,
         sizeId: mediumSize.id,
@@ -397,7 +397,7 @@ async function seedIntoDB() {
         name: "Suit 3",
         price: 110.0,
         description: "",
-        Featured: false,
+        Featured: true,
         Archived: false,
         StoreId,
         categoryId: suitsCategory.id,
@@ -418,7 +418,7 @@ async function seedIntoDB() {
         price: 10.0,
         description: "",
         Featured: false,
-        Archived: false,
+        Archived: true,
         StoreId,
         categoryId: tshirtsCategory.id,
         sizeId: smallSize.id,
@@ -438,7 +438,7 @@ async function seedIntoDB() {
         price: 100.0,
         description: "",
         Featured: false,
-        Archived: false,
+        Archived: true,
         StoreId,
         categoryId: tshirtsCategory.id,
         sizeId: largeSize.id,
@@ -518,9 +518,9 @@ async function seedIntoDB() {
         price: 105.0,
         description: "",
         Featured: true,
-        Archived: true,
+        Archived: false,
         StoreId,
-        categoryId: shirtCategory.id,
+        categoryId: suitsCategory.id,
         sizeId: largeSize.id,
         colorId: blackColor.id,
         images: {
