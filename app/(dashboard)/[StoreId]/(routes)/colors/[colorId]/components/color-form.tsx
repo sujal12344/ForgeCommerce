@@ -19,11 +19,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
-import { Colors } from "@prisma/client";
+import { Color } from "@prisma/client";
 import { AlertModal } from "../../../../../../../components/modals-and-nav/Alert-modal";
 
 type ColorsFormProps = {
-  initialdata: Colors | null;
+  initialdata: Color | null;
 };
 const formSchema = z.object({
   name: z.string().min(1),

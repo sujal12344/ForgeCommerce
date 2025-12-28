@@ -22,7 +22,7 @@ const SetupPage = () => {
             <Loader />
           </div>
         </div>
-        
+
         <div className="space-y-2 text-center">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent">
             ForgeCommerce
@@ -31,7 +31,7 @@ const SetupPage = () => {
             Setting up your store...
           </p>
         </div>
-        
+
         <div className="flex items-center space-x-2 text-sm text-muted-foreground">
           <div className="h-2 w-2 rounded-full bg-primary animate-pulse"></div>
           <span>Initializing workspace</span>

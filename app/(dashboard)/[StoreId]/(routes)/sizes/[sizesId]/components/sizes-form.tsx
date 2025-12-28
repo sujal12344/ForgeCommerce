@@ -20,11 +20,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
-import { Sizes } from "@prisma/client";
+import { Size } from "@prisma/client";
 import { AlertModal } from "../../../../../../../components/modals-and-nav/Alert-modal";
 
 type SizesFormProps = {
-  initialdata: Sizes | null;
+  initialdata: Size | null;
 };
 const formSchema = z.object({
   name: z.string().min(1),
