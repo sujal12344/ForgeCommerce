@@ -10,7 +10,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "postinstall": "prisma generate",
-    "insert-seed": "tsx prisma/seed.ts"
+    "insert-seed": "tsx prisma/seed.ts",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.21.15",

@@ -6,7 +6,7 @@ import { useState, useEffect, ComponentPropsWithoutRef, useRef } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { Categories, Colors, Image, Sizes } from "@prisma/client";
+import { Category, Color, Image, Size } from "@prisma/client";
 import { useParams, useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { Plus, Minus } from "lucide-react";
@@ -59,9 +59,9 @@ type BulkProductFormValues = z.infer<typeof bulkFormSchema>;
 const BulkProductForm = () => {
   const params = useParams();
   const router = useRouter();
-  const [categories, setCategories] = useState<Categories[]>([]);
-  const [colors, setColors] = useState<Colors[]>([]);
-  const [sizes, setSizes] = useState<Sizes[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [colors, setColors] = useState<Color[]>([]);
+  const [sizes, setSizes] = useState<Size[]>([]);
 
   const [loading, setLoading] = useState(false);
   const syntaxHighlighterRef = useRef<SyntaxHighlighter>(null);
