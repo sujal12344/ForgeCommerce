@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, LogIn } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DEMO_STORE_ID } from "@/lib/constants";
 
 export default function AutoLoginButton() {
   const { signIn, isLoaded } = useSignIn();
@@ -30,7 +31,7 @@ export default function AutoLoginButton() {
       });
 
       if (result.status === "complete") {
-        window.location.href = "/clkwya8dw0000lb082nevtsqf";
+        window.location.href = `/${DEMO_STORE_ID}`;
       } else {
         console.error("Sign in incomplete:", result);
       }

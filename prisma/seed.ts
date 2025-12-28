@@ -1,4 +1,5 @@
 import prisma from "./client";
+import { DEMO_STORE_ID } from "@/lib/constants";
 
 async function seedIntoDB() {
   // To create tables from schema.prisma, run: npx prisma db push
@@ -22,10 +23,10 @@ async function seedIntoDB() {
   // Create Store
   console.log("🏪 Creating store...");
   const store = await prisma.store.upsert({
-    where: { id: "clkwya8dw0000lb082nevtsqf" },
+    where: { id: DEMO_STORE_ID },
     update: {},
     create: {
-      id: "clkwya8dw0000lb082nevtsqf",
+      id: DEMO_STORE_ID,
       name: "ForgeCom",
       userId: "user_37TghqIwElaGZ6C4qze8iWq1ZbU",
     },

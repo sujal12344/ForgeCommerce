@@ -27,6 +27,7 @@ import React from "react";
 import { dataExists } from "@/components/sample-actions/data-exists";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { DEMO_STORE_ID, DEMO_STORE_URL } from "@/lib/constants";
 
 const Dashboard = async ({ params }: { params: { StoreId: string } }) => {
   const sales = await getSales(params.StoreId);
@@ -43,8 +44,8 @@ const Dashboard = async ({ params }: { params: { StoreId: string } }) => {
         <div className="flex space-x-4 items-center">
           {dataExist ? <></> : <SampleDataModal />}
 
-          {params.StoreId === "clkwya8dw0000lb082nevtsqf" && (
-            <Link href="https://forge-ecomm-store.vercel.app" target="_blank">
+          {params.StoreId === DEMO_STORE_ID && (
+            <Link href={DEMO_STORE_URL} target="_blank">
               <Button className="bg-gradient-to-r transition-colors from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white flex items-center gap-2">
                 <ShoppingCart className="h-4 w-4" />
                 <span className="hidden sm:inline">View</span> Store

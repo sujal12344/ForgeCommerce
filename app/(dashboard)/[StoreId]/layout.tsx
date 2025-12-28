@@ -15,7 +15,7 @@ export default async function StoreIdLayout({
   const IsStore = await prisma.store.findFirst({
     where: {
       id: params.storeId,
-      userId: userId,
+      userId,
     },
   });
   if (!IsStore) redirect("/");
