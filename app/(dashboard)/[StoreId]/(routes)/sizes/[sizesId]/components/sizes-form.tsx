@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Heading from "@/components/ui/heading";
-import { Trash, Trash as TrashIcon } from "lucide-react";
+import { Trash } from "lucide-react";
 import * as z from "zod";
 import { Input } from "@/components/ui/input";
 import {
